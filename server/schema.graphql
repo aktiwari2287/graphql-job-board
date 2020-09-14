@@ -1,4 +1,5 @@
- type Query {
+# ! mark is being used for not null, ID can not be null
+type Query {
     jobs: [Job]
 }
 
