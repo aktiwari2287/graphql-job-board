@@ -47,5 +47,22 @@ export async function loadJobsById(id) {
          body: JSON.stringify({query,variables})
      });
      const responseBody = await response.json();
+     if(responseBody.errors) {
+          throw new Error(responseBody.errors.map((error)=>error.message).join("\n"));
+     }
      return responseBody.data;
+ }
+
+ export async function loadCompany(id) {
+     console.log('company called');
+     
+     const query = `query companyQuery($id: ID!){
+        company(id: $id) {
+          id,
+          name,
+          description
+        }
+      }`;
+      const {company} = await graphqlRequest(query, {id});
+      return company;
  }
