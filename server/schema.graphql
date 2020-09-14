@@ -1,5 +1,10 @@
+<<<<<<< HEAD
  type Query {
     job(id: ID!): Job
+=======
+# ! mark is being used for not null, ID can not be null
+type Query {
+>>>>>>> 6861c5115d9b5250511dac6c0586b02ec52e20a9
     jobs: [Job]
 }
 
@@ -15,4 +20,7 @@ type Job {
     company: Company
     description: String
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6861c5115d9b5250511dac6c0586b02ec52e20a9
