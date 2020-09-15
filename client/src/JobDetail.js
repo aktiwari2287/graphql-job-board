@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {loadJobsById} from './request'
+import {loadJobsById} from './request';
+
 export class JobDetail extends Component {
   constructor(props) {
     super(props);

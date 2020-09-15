@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import { companies } from './fake-data';
 import {loadCompany} from './request'
+import {JobList} from './JobList'
 export class CompanyDetail extends Component {
   constructor(props) {
     super(props);
@@ -21,6 +22,9 @@ export class CompanyDetail extends Component {
       <div>
         <h1 className="title">{company.name}</h1>
         <div className="box">{company.description}</div>
+        <h5 className="title is-5">{company.name}</h5>
+        <JobList jobs={company.jobs}>
+        </JobList>
       </div>
     );
   }
