@@ -70,3 +70,14 @@ export async function loadJobsById(id) {
       const {company} = await graphqlRequest(query, {id});
       return company;
  }
+ export async function postJob(companyId, title, description) {
+     console.log('post job called');
+     
+    const mutation = `mutation ($id:ID, $title: String, $description: String) {
+        createJob(companyId: $id, title: $title, description: $description)
+      }`;
+      const id = await graphqlRequest(mutation, {id:companyId, title, description});
+      console.log('job posted', id);
+      
+      return id;
+ }
