@@ -4,7 +4,10 @@ const endpointURL = 'http://localhost:9000/graphql';
 
 const client = new ApolloClient({
     link: new HttpLink({uri: endpointURL}),
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
+    defaultOptions: {watchQuery: {
+        fetchPolicy: 'cache-and-network',
+      }}
 });
 export async function loadJobs() {
    const query = gql`
@@ -26,9 +29,8 @@ export async function loadJobs() {
 
 
 export async function loadJobsById(id) {
-    const query =`
-             query JobQuery($id: ID!) {
-                job(id: $id){
+    const query =gql`
+        query JobQuery($id: ID!) { job(id: $id){
                  id,
                  title,
                  description,
@@ -39,7 +41,9 @@ export async function loadJobsById(id) {
                }
              }              
                  `;
-     const {job} = await graphqlRequest(query,{id});
+    // const {job} = await graphqlRequest(query,{id});
+     const {data: {job}} = await client.query({query, variables:{id}});
+     
      return job;
  }
 
